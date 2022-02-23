@@ -483,7 +483,8 @@ section#projects {
 	border-radius: 7px;
 	padding: 15px;
 	color: #fff;
-	margin: 15px;
+	margin: 15px auto;
+	max-width: 1500px;
 	height: 100%;
 }
 
@@ -748,9 +749,12 @@ section#about-wrapper {
 
 header#navbar {
 	background: #23262a;
-	padding: 10px 15px;
+}
+
+header#navbar .container {
 	display: flex;
 	justify-content: space-between;
+	padding: 10px 0;
 }
 
 header#navbar #navbar-logo-wrapper {
@@ -806,9 +810,12 @@ header#navbar .nav a:last-child {
 
 footer#footer {
 	background: #23262a;
-	padding: 10px 15px;
+}
+
+footer#footer .container {
 	display: flex;
 	justify-content: space-between;
+	padding: 10px 0;
 }
 
 footer#footer p.copyright {
@@ -839,4 +846,9 @@ footer#footer #languages span:first-child .flag {
 
 footer#footer #languages span {
 	cursor: pointer;
+}
+
+.container {
+	margin: 0 auto;
+	max-width: 1500px;
 }
