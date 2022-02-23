@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2196f3">
+    <title>Ovimation</title>
+    <link rel="stylesheet" href="assets/styles/style.css">
+    <script src="assets/scripts/languages.js"></script>
+    <script src="assets/scripts/translation.js"></script>
+</head>
+
+<body>
+    <noscript>
+        <style>
+            body {
+                background: #fff !important;
+                color: #000 !important;
+            }
+
+            #root {
+                display: none !important;
+            }
+        </style>
+        You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="root">
+        <section class="main">
+            <ul class="toolbar">
+                <li class="to-home tooltip" onclick="to_home();">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white"
+                        style="margin: 4px 0 4px 7px;"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z" />
+                    </svg>
+                    <span class="tooltiptext-right"><script>getTranslation('to_home');</script></span>
+                </li>
+                <li class="active tooltip" onclick="set_tool(this, 'default');" class="active">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white"
+                        style="margin: 4px 0 4px 7px;" viewBox="0 0 16 16">
+                        <path
+                            d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+                    </svg>
+                    <span class="tooltiptext-right"><script>getTranslation('pencil');</script></span>
+                </li>
+                <li class="tooltip" onclick="set_tool(this, 'eraser');">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" style="margin: 4px 0 4px 7px;" viewBox="0 0 16 16">
+                        <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66 11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
+                    </svg>
+                    <span class="tooltiptext-right"><script>getTranslation('eraser');</script></span>
+                </li>
+            </ul>
+            <div style="width: 100%; height: 100vh;">
+                <canvas id="canvas"></canvas>
+                <img src="" alt="Animation Result" class="animation-result">
+            </div>
+            <div class="sidebar">
+                <ul class="sidebar-tools">
+                    <li class="tooltip">
+                        <input onInput="draw_color = this.value;" type="color" class="color-picker">
+                        <span class="tooltiptext-bottom"><script>getTranslation('pencil_color');</script></span>
+                    </li>
+                    <li class="tooltip">
+                        <div class="dropdown">
+                            <div onclick="openDropdown()" class="draw_size-circle"></div>
+                        </div>
+                        <span class="tooltiptext-bottom"><script>getTranslation('pencil_size');</script></span>
+                    </li>
+                </ul>
+                <div class="dropdown-content" id="dropdown">
+                    <div class="tooltip">
+                        <input type="range" min="1" value="2" max="500"
+                            onInput="draw_width = this.value; document.getElementById('draw_width-value').innerText = `${this.value}px`"
+                            class="draw_size-slider">
+                        <span class="tooltiptext" id="draw_width-value"></span>
+                    </div>
+                </div>
+                <ul class="animation-slides">
+                    <div id="slides">
+                        <li class="active">
+                            <div class="slide-wrapper" onclick="set_slide(this, 0);">
+                                <img class="default-slide" src="" alt="Default Slide">
+                            </div>
+                        </li>
+                    </div>
+                    <hr>
+                    <li onclick="add_slide();" id="new-slide"><img src="assets/images/plus.png" alt="New Slide"
+                            style="filter: invert(1) hue-rotate(180deg); opacity: .3;" alt="" class="add-slide"></li>
+                </ul>
+                <button onclick="convert_slides(this, 'play');" class="btn play-animation">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                        class="bi bi-play-fill" viewBox="0 0 13 13">
+                        <path
+                            d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+                    </svg>
+                </button>
+                <a onclick="convert_slides(this, 'download');" class="btn download-animation"><script>getTranslation('download_as_gif');</script></a>
+            </div>
+        </section>
+        <script src="assets/scripts/main.js"></script>
+        <script src="gif.js"></script>
+        <script src="assets/scripts/index.js"></script>
+    </div>
+</body>
+
+</html>

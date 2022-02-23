@@ -1,0 +1,18 @@
+{
+    "short_name": "Ovimation",
+    "name": "Ovimation - Simple web application for drawing GIF animations",
+    "start_url": "/home.html",
+    "background_color": "#1d2023",
+    "display": "standalone",
+    "scope": "/home.html",
+    "theme_color": "#2196f3",
+    "shortcuts": [
+        {
+            "name": "Ovimation - About the website",
+            "short_name": "Ovimation",
+            "description": "About the Ovimation website",
+            "url": "/about.html"
+        }
+    ],
+    "description": "Simple web application for drawing GIF animations"
+}
