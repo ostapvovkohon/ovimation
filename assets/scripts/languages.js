@@ -26,7 +26,6 @@ const uk_ua = {
     ostap_vovkohon: "Вовкогон Остап",
 
     metadescrition: "Простий веб-застосунок для малювання GIF анімацій",
-    manifest_url: "assets/json/manifest_uk_ua.json"
 };
 
 const en_us = {
@@ -57,5 +56,4 @@ const en_us = {
     ostap_vovkohon: "Ostap Vovkohon",
 
     metadescrition: "Simple web application for drawing GIF animations",
-    manifest_url: "assets/json/manifest_en_us.json"
 };

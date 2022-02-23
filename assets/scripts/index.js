@@ -1,13 +1,13 @@
 const projects = JSON.parse(window.localStorage.getItem('projects'));
 
 if (projects == [] || projects == null || projects == undefined) {
-    window.location.replace('home.html');
+    window.location.replace('index.html');
 };
 
 let filtered_projects = projects.filter(checkSelected);
 
 if (filtered_projects.length == 0 || filtered_projects == null || filtered_projects == undefined) {
-    window.location.replace('home.html');
+    window.location.replace('index.html');
 };
 
 function checkSelected(project) {
@@ -277,7 +277,7 @@ function to_home() {
     };
 
     window.localStorage.setItem('projects', JSON.stringify(projects));
-    window.location.replace('home.html');
+    window.location.replace('index.html');
 };
 
 function reset_slides() {

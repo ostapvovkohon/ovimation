@@ -5,7 +5,7 @@ var spans = document.querySelectorAll(".close");
 
 for (project of projects) {
     if (project.selected == true) {
-        window.location.replace('index.html');
+        window.location.replace('project.html');
     };
 };
 
@@ -100,7 +100,7 @@ function create_project(title, color, fps, drmttpp) {
             window.localStorage.setItem('projects', JSON.stringify(projects));
             window.location.reload();
         } else {
-            window.location.replace('index.html');
+            window.location.replace('project.html');
         };
     };
 };
@@ -115,7 +115,7 @@ function open_project(index) {
     projects[index].selected = true;
     window.localStorage.setItem('projects', JSON.stringify(projects));
 
-    window.location.replace('index.html');
+    window.location.replace('project.html');
 };
 
 document.querySelector('.create-project').addEventListener('click', function (e) {
@@ -186,4 +186,3 @@ lang_buttons.forEach((lang_btn) => {
 });
 
 document.querySelector('#metadescrition').content = returnTranslation('metadescrition');
-document.querySelector('#manifest').href = returnTranslation('manifest_url');
