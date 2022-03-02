@@ -11,7 +11,7 @@ if (filtered_projects.length == 0 || filtered_projects == null || filtered_proje
 };
 
 function checkSelected(project) {
-    return project.selected == true;        
+    return project.selected == true;
 };
 
 let project_index = projects.indexOf(projects.filter(checkSelected)[0]);
@@ -319,3 +319,33 @@ function openDropdown() {
 var new_slide_btn = document.getElementById('new-slide');
 
 new_slide_btn.setAttribute('title', returnTranslation('new_slide'));
+
+// BETA TESTING
+
+$('#canvas').click(function(e) {
+    var pos = findPos(this);
+    var x = e.pageX - pos.x;
+    var y = e.pageY - pos.y;
+    var c = this.getContext('2d');
+    var p = c.getImageData(x, y, 1, 1).data; 
+    var hex = "#" + ("000000" + rgbToHex(p[0], p[1], p[2])).slice(-6);
+    console.log(hex);
+});
+
+function findPos(obj) {
+    var curleft = 0, curtop = 0;
+    if (obj.offsetParent) {
+        do {
+            curleft += obj.offsetLeft;
+            curtop += obj.offsetTop;
+        } while (obj = obj.offsetParent);
+        return { x: curleft, y: curtop };
+    }
+    return undefined;
+}
+
+function rgbToHex(r, g, b) {
+    if (r > 255 || g > 255 || b > 255)
+        throw "Invalid color component";
+    return ((r << 16) | (g << 8) | b).toString(16);
+}

@@ -62,13 +62,11 @@ body {
     color: #fff;
 }
 
-body:not(#home,
-#about) {
+body:not(#home, #about, #error) {
     overflow: hidden;
 }
 
-body:not(#home,
-#about) * {
+body:not(#home, #about, #error) * {
     user-select: none;
     -ms-user-select: none;
     -moz-user-select: none;
@@ -662,6 +660,22 @@ section#about-wrapper {
     height: 100%;
 }
 
+/* 404 PAGE */
+
+section#error-wrapper {
+    background: #23262a;
+    border: 1px solid #24262b;
+    border-radius: 7px;
+    padding: 15px;
+    color: #fff;
+    margin: 15px;
+    height: 100%;
+}
+
+section#error-wrapper .btn {
+    width: auto;
+    margin-left: 0;
+}
 
 /* UTILS */
 

@@ -164,11 +164,6 @@ function set_project_data_to_modal(id, title, fps) {
     };
 };
 
-function set_language(lang) {
-    window.localStorage.setItem('lang', lang);
-    window.location.reload();
-};
-
 function reset_projects() {
     let projects_wrapper = document.querySelectorAll('.projects-wrapper #prjs .project');
 
@@ -193,21 +188,5 @@ function reset_projects() {
 </div>`);
     };
 };
-
-const lang_buttons = document.querySelectorAll('.flag');
-
-lang_buttons.forEach((lang_btn) => {
-    let lang = window.localStorage.getItem('lang');
-
-    if (lang == lang_btn.dataset.lang) {
-        lang_btn.classList.add('active');
-        lang_btn.onclick = function () { };
-    } else {
-        lang_btn.classList.remove('active');
-        lang_btn.addEventListener('click', function (e) {
-            set_language(e.target.dataset.lang);
-        });
-    };
-});
 
 document.querySelector('#metadescrition').content = returnTranslation('metadescrition');
