@@ -134,7 +134,7 @@ function delete_project(e, index) {
             return el != null;
         });
         window.localStorage.setItem('projects', JSON.stringify(projects));
-        e.parentElement.parentElement.remove();
+        reset_projects();
         refresh_modal();
     };
 
@@ -167,6 +167,31 @@ function set_project_data_to_modal(id, title, fps) {
 function set_language(lang) {
     window.localStorage.setItem('lang', lang);
     window.location.reload();
+};
+
+function reset_projects() {
+    let projects_wrapper = document.querySelectorAll('.projects-wrapper #prjs .project');
+
+    projects_wrapper.forEach((prj) => {
+        prj.remove();
+    });
+
+    for (var i = 0; i < projects.length; i++) {
+        document.querySelector('.projects-wrapper #prjs').insertAdjacentHTML('beforeend', `<div class="project">
+            <ul class="project-options">
+                <li class="project-option" onclick="open_modal(document.querySelector('#editProjectModal')); set_project_data_to_modal(${i}, '${projects[i].title}', ${projects[i].fps})">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-pencil-fill" viewBox="0 0 22 22">
+                        <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                        </svg>
+                        </li>
+                        <li class="project-option" onclick="delete_project(this, ${i})"><p style="font-size: 28px; margin-top: -11px; text-align: center;">&times;</p></li>
+                        </ul>
+                        <div class="project-wrapper" onclick="open_project(${i})">
+<img src="${projects[i].slides[0]}" alt="${projects[i].title}" class="project-thumbnail">
+<h3 class="project-title">${projects[i].title}</h3>
+</div>
+</div>`);
+    };
 };
 
 const lang_buttons = document.querySelectorAll('.flag');
