@@ -10,6 +10,7 @@ const uk_ua = {
     my_project: "Мій Проєкт",
     mobile_alert: "Цей сайт не підтримує мобільні пристрої. Ми постараємося виправити це в майбутньому.",
     projects_alert: "Ви не можете створити більше, ніж 25 проєктів.",
+    will_be_saved_as: "Буде збережено як",
 
     to_home: "На Головну",
     pencil: "Пензель",
@@ -40,6 +41,7 @@ const en_us = {
     my_project: "My Project",
     mobile_alert: "This site doesn't support mobile devices. We'll try to fix that later.",
     projects_alert: "You can't create more than 25 projects",
+    will_be_saved_as: "Will be saved as",
 
     to_home: "To Home",
     pencil: "Pencil",

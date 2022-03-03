@@ -29,6 +29,8 @@ modals.forEach((modal) => {
     };
 });
 
+refresh_modal();
+
 function refresh_modal() {
     const title = document.querySelector('#project-title');
     const color = document.querySelector('#background-fill');
@@ -39,6 +41,15 @@ function refresh_modal() {
     color.value = '#ffffff';
     fps.value = 5;
     drmttpp.checked = false;
+    document.querySelector('#will_be_saved').innerText = `${returnTranslation('my_project')} ${projects.length + 1}`;
+
+    document.querySelector('#project-title').oninput = (e) => {
+        if (e.target.value.trim() == '' || e.target.value.trim() == null || e.target.value.trim() == undefined) {
+            document.querySelector('#will_be_saved').innerText = `${returnTranslation('my_project')} ${projects.length + 1}`;
+        } else {
+            document.querySelector('#will_be_saved').innerText = e.target.value.trim();
+        };
+    };
 };
 
 function open_modal(modal) {
@@ -98,7 +109,9 @@ function create_project(title, color, fps, drmttpp) {
             projects.at(-1).slides.push(cnv.toDataURL());
             cnv.remove();
             window.localStorage.setItem('projects', JSON.stringify(projects));
-            window.location.reload();
+            document.getElementById('newProjectModal').style.display = 'none';
+            refresh_modal()
+            reset_projects();
         } else {
             window.location.replace('project.html');
         };
@@ -141,8 +154,12 @@ function delete_project(e, index) {
     projects = JSON.parse(window.localStorage.getItem('projects'));
 };
 
-function edit_project(project_id, title, fps) {
-    projects[project_id].title = title;
+function edit_project(project_id, title, old_title, fps) {
+    if (title == '' || title == null || title == undefined) {
+        projects[project_id].title = old_title;
+    } else {
+        projects[project_id].title = title;
+    };
     projects[project_id].fps = fps;
     window.localStorage.setItem('projects', JSON.stringify(projects));
 };
@@ -156,11 +173,20 @@ function set_project_data_to_modal(id, title, fps) {
     project_header_e.innerHTML = title;
     title_e.value = title;
     fps_e.value = fps;
+    document.querySelector('#will_be_saved-e').innerText = title;
 
     edit_project_btn.onclick = function () {
-        edit_project(id, title_e.value.trim(), fps_e.value.trim());
+        edit_project(id, title_e.value.trim(), title, fps_e.value.trim());
         document.querySelector('#editProjectModal').style.display = "none";
-        window.location.reload();
+        reset_projects();
+    };
+
+    document.querySelector('#project-title-e').oninput = (e) => {
+        if (e.target.value.trim() == '' || e.target.value.trim() == null || e.target.value.trim() == undefined) {
+            document.querySelector('#will_be_saved-e').innerText = title;
+        } else {
+            document.querySelector('#will_be_saved-e').innerText = e.target.value.trim();
+        };
     };
 };
 

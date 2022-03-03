@@ -389,6 +389,12 @@ label.form-label {
     transition: all .15s linear;
 }
 
+span.will_be_saved_as {
+    display: block;
+    margin-top: -15px;
+    margin-bottom: 15px;
+}
+
 .form-control:focus {
     border: 1px solid var(--primary-color-shadow);
     box-shadow: 0 0 10px var(--primary-color-shadow);
