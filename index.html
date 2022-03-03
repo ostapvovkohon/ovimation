@@ -53,6 +53,14 @@
                 <div class="projects-wrapper">
                     <div id="prjs">
                         <script>
+                            var getTitle = (title) => {
+                                if (title.length > 16) {
+                                    return title.slice(0, 16) + '...';
+                                } else {
+                                    return title;
+                                };
+                            };
+
                             if (window.localStorage.getItem('projects') == null || window.localStorage.getItem('projects') == undefined) {
                                 window.localStorage.setItem('projects', JSON.stringify([]));
                             } else {
@@ -71,7 +79,7 @@
                                                     </ul>
                                                     <div class="project-wrapper" onclick="open_project(${projects.indexOf(p)})">
                             <img src="${p.slides[0]}" alt="${p.title}" class="project-thumbnail">
-                            <h3 class="project-title">${p.title}</h3>
+                            <h3 class="project-title">${getTitle(p.title)}</h3>
                             </div>
                         </div>`
                                 };
@@ -82,7 +90,8 @@
                         </script>
                     </div>
                     <div class="project new-project" onclick="open_modal(document.querySelector('#newProjectModal'));">
-                        <img alt="New Project" src="assets/images/plus.png" style="filter: invert(1) hue-rotate(180deg); opacity: .3;" alt="" class="project-thumbnail">
+                        <img alt="New Project" src="assets/images/plus.png"
+                            style="filter: invert(1) hue-rotate(180deg); opacity: .3;" alt="" class="project-thumbnail">
                         <h3 class="project-title" style="text-align: center;">
                             <script>
                                 getTranslation('new_project');
@@ -105,7 +114,9 @@
                         <script>getTranslation('project_title');</script>
                     </label>
                     <input type="text" class="form-control" id="project-title" required>
-                    <span class="will_be_saved_as"><script>getTranslation('will_be_saved_as');</script> <i id="will_be_saved"></i></span>
+                    <span class="will_be_saved_as">
+                        <script>getTranslation('will_be_saved_as');</script> <i id="will_be_saved"></i>
+                    </span>
                     <label for="background-fill" class="form-label">
                         <script>getTranslation('background_color');</script>
                     </label>
@@ -162,7 +173,9 @@
                         <script>getTranslation('project_title');</script>
                     </label>
                     <input type="text" class="form-control" id="project-title-e" required>
-                    <span class="will_be_saved_as"><script>getTranslation('will_be_saved_as');</script> <i id="will_be_saved-e"></i></span>
+                    <span class="will_be_saved_as">
+                        <script>getTranslation('will_be_saved_as');</script> <i id="will_be_saved-e"></i>
+                    </span>
                     <label for="fps-e" class="form-label">FPS</label>
                     <select class="form-control" id="fps-e" required>
                         <option value="1">1 FPS</option>

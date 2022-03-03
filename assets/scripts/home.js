@@ -47,7 +47,7 @@ function refresh_modal() {
         if (e.target.value.trim() == '' || e.target.value.trim() == null || e.target.value.trim() == undefined) {
             document.querySelector('#will_be_saved').innerText = `${returnTranslation('my_project')} ${projects.length + 1}`;
         } else {
-            document.querySelector('#will_be_saved').innerText = e.target.value.trim();
+            document.querySelector('#will_be_saved').innerText = getTitle(e.target.value.trim());
         };
     };
 };
@@ -140,6 +140,14 @@ document.querySelector('.create-project').addEventListener('click', function (e)
     create_project(title, color, fps, drmttpp);
 });
 
+var getTitle = (title) => {
+    if (title.length > 50) {
+        return title.slice(0, 55) + '...';
+    } else {
+        return title;
+    };
+};
+
 function delete_project(e, index) {
     if (projects[index]) {
         delete projects[index];
@@ -171,9 +179,11 @@ function set_project_data_to_modal(id, title, fps) {
     const edit_project_btn = document.querySelector('.edit-project');
 
     project_header_e.innerHTML = title;
+    project_header_e.innerHTML = project_header_e.innerHTML.slice(0, 57);
+    (project_header_e.innerHTML.length >= 57) ? project_header_e.innerHTML += '...' : null;
     title_e.value = title;
     fps_e.value = fps;
-    document.querySelector('#will_be_saved-e').innerText = title;
+    document.querySelector('#will_be_saved-e').innerText = getTitle(title_e.value.trim());
 
     edit_project_btn.onclick = function () {
         edit_project(id, title_e.value.trim(), title, fps_e.value.trim());
@@ -183,9 +193,9 @@ function set_project_data_to_modal(id, title, fps) {
 
     document.querySelector('#project-title-e').oninput = (e) => {
         if (e.target.value.trim() == '' || e.target.value.trim() == null || e.target.value.trim() == undefined) {
-            document.querySelector('#will_be_saved-e').innerText = title;
+            document.querySelector('#will_be_saved-e').innerText = getTitle(title);
         } else {
-            document.querySelector('#will_be_saved-e').innerText = e.target.value.trim();
+            document.querySelector('#will_be_saved-e').innerText = getTitle(e.target.value.trim());
         };
     };
 };

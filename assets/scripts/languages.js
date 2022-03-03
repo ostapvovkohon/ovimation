@@ -27,6 +27,9 @@ const uk_ua = {
     ostap_vovkohon: "Вовкогон Остап",
 
     metadescrition: "Простий веб-застосунок для малювання GIF анімацій",
+
+    not_found: "404: Не знайдено",
+    requested_url_was_not_found: "Запитувану URL-адресу не знайдено на цьому сервері.",
 };
 
 const en_us = {
@@ -58,4 +61,7 @@ const en_us = {
     ostap_vovkohon: "Ostap Vovkohon",
 
     metadescrition: "Simple web application for drawing GIF animations",
+
+    not_found: "404: Not Found",
+    requested_url_was_not_found: "The requested URL was not found on this server.",
 };

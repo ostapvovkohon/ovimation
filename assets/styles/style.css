@@ -551,6 +551,7 @@ section#projects {
     cursor: pointer;
     position: relative;
     transition: all .15s linear;
+    max-width: 231px!important;
 }
 
 .projects-wrapper .project:nth-child(n) {
@@ -614,7 +615,7 @@ section#projects {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: none;
+    overflow: auto;
     background: rgb(0, 0, 0);
     background: rgba(0, 0, 0, 0.4);
 }
