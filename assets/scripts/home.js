@@ -148,6 +148,14 @@ var getTitle = (title) => {
     };
 };
 
+var getProjectTitle = (title) => {
+    if (title.length > 16) {
+        return title.slice(0, 16) + '...';
+    } else {
+        return title;
+    };
+};
+
 function delete_project(e, index) {
     if (projects[index]) {
         delete projects[index];
@@ -219,7 +227,7 @@ function reset_projects() {
                         </ul>
                         <div class="project-wrapper" onclick="open_project(${i})">
 <img src="${projects[i].slides[0]}" alt="${projects[i].title}" class="project-thumbnail">
-<h3 class="project-title">${projects[i].title}</h3>
+<h3 class="project-title">${getProjectTitle(projects[i].title)}</h3>
 </div>
 </div>`);
     };
