@@ -53,7 +53,7 @@
                 <div class="projects-wrapper">
                     <div id="prjs">
                         <script>
-                            var getTitle = (title) => {
+                            var getProjectTitle = (title) => {
                                 if (title.length > 16) {
                                     return title.slice(0, 16) + '...';
                                 } else {
@@ -79,7 +79,7 @@
                                                     </ul>
                                                     <div class="project-wrapper" onclick="open_project(${projects.indexOf(p)})">
                             <img src="${p.slides[0]}" alt="${p.title}" class="project-thumbnail">
-                            <h3 class="project-title">${getTitle(p.title)}</h3>
+                            <h3 class="project-title">${getProjectTitle(p.title)}</h3>
                             </div>
                         </div>`
                                 };
